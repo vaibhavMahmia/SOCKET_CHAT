@@ -37,6 +37,8 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
     try {
         const { username, password } = req.body;
+        if(!username || !password)
+            return res.status(400).json({ error: 'All fields are required !' });
         const user = await User.findOne({ username });
         const isPasswordCorrect = await bcrypt.compare(password, user?.password || '');
         if(!user || !isPasswordCorrect)
