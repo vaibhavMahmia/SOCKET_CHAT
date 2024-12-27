@@ -26,8 +26,10 @@ const Signup = () => {
     <div className='flex flex-col items-center justify-center min-w-96 mx-auto'>
         <div className='w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
             <h1 className='text-3xl font-semibold text-center text-gray-300'>
-                SignUp <span className='text-blue-500'>ChatApp</span>
+                SignUp <span className='text-teal-500'>SocketChatApp</span>
             </h1>
+            <br />
+            <h3 className='font-semibold text-center text-gray-300 bg-slate-700 rounded-full'>Author: <span className='text-teal-500'>vaibhav</span><span className='text-orange-400'>M</span></h3>
             <form onSubmit={handleFormSubmit}>
                 <div>
                     <label className='label p-2'>

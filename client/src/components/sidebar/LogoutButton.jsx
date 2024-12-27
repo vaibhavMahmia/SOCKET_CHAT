@@ -6,8 +6,9 @@ const LogoutButton = () => {
   return (
     <div className='mt-auto'>
       {
-        !loading ? <RiLogoutBoxLine className="w-6 h-6 text-white cursor-pointer" onClick={logout}/> : <span className="loading loading-spinner"></span>
+        !loading ? <RiLogoutBoxLine className="w-6 h-6 text-red-500 cursor-pointer" onClick={logout}/> : <span className="loading loading-spinner"></span>
       }
+      
     </div>
   )
 }
