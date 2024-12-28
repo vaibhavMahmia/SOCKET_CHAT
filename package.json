@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "nodemon server/server.js",
     "start": "node server/server.js",
-    "build": "bun install && bun install --prefix client && bun run build --prefix client"
+    "build": "bun install"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
