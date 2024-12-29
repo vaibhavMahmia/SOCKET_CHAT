@@ -2,9 +2,11 @@ import React from 'react'
 import Conversation from './Conversation'
 import useGetConversations from '../../hooks/useGetConversations';
 import { getRandomEmoji } from '../../utils/emojis';
+import useListenNewUsers from '../../hooks/useListenNewUsers';
 
 const Conversations = () => {
   const { loading, conversations } = useGetConversations();
+  useListenNewUsers();
   console.log("conversations: ", conversations);
   return (
     <div className='py-2 flex flex-col overflow-auto'>

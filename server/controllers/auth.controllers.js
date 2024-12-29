@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import bcrypt from 'bcryptjs';
 import { generateTokenAndSetCookie } from "../utils/generateToken.js";
+import { io } from "../socket/socket.js";
 
 export const signup = async (req, res) => {
     try {
@@ -18,6 +19,13 @@ export const signup = async (req, res) => {
         if (newUser) {
             generateTokenAndSetCookie(newUser._id, res);
             await newUser.save();
+            const emitUser = {
+                _id: newUser._id,
+                fullName: newUser.fullName,
+                username: newUser.username,
+                profilePic: newUser.profilePic
+            }
+            io.emit("newUser", emitUser);
             res.status(201).json({
                 _id: newUser._id,
                 fullName: newUser.fullName,

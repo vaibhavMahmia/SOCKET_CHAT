@@ -7,9 +7,10 @@ const Conversation = ({ conversation, lastIdx, emoji }) => {
     const isSelected = selectedConversation?._id === conversation._id;
     const { onlineUsers } = useSocketContext();
     const isOnline = onlineUsers.includes(conversation._id);
+    const shakeClass = conversation.shouldShake ? "shake" : "";
     return (
         <>
-            <div className={`flex gap-2 items-center hover:bg-teal-700 rounded p-2 py-1 cursor-pointer ${isSelected ? "bg-teal-700": ""}`} onClick={()=>setSelectedConversation(conversation)}>
+            <div className={`flex gap-2 items-center hover:bg-teal-700 rounded p-2 py-1 cursor-pointer ${isSelected ? "bg-teal-700": ""} ${shakeClass}`} onClick={()=>setSelectedConversation(conversation)}>
                 <div className={`avatar ${isOnline ? "online" : ""}`}>
                     <div className="w-10 rounded-full">
                         <img src={conversation.profilePic} />

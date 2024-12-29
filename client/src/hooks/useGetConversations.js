@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast";
+import useSideBarUser from "../zustand/useSideBarUser";
 
 const useGetConversations = () => {
   const [loading, setLoading] = useState(false);
-  const [conversations, setConversations] = useState([]);
+  const { conversations, setConversations } = useSideBarUser()
   useEffect(()=>{
     const getConversations = async () => {
         setLoading(true);
