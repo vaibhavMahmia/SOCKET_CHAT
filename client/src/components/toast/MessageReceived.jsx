@@ -1,7 +1,7 @@
 import toast from "react-hot-toast"
 
 const MessageReceived = ({ senderName, message, t, profilePic }) => {
-  const displayedMessage = message.length > 8 ? message.slice(0, 8) : message;
+  const displayedMessage = message.length > 8 ? message.slice(0, 8) + "...": message;
   return (
     <div
     className={`${

@@ -3,10 +3,12 @@ import Conversation from './Conversation'
 import useGetConversations from '../../hooks/useGetConversations';
 import { getRandomEmoji } from '../../utils/emojis';
 import useListenNewUsers from '../../hooks/useListenNewUsers';
+import useListenMessages from '../../hooks/useListenMessages';
 
 const Conversations = () => {
   const { loading, conversations } = useGetConversations();
   useListenNewUsers();
+  useListenMessages();
   console.log("conversations: ", conversations);
   return (
     <div className='py-2 flex flex-col overflow-auto'>

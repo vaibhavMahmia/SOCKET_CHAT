@@ -16,7 +16,14 @@ const useListenMessages = () => {
 			newMessage.shouldShake = true;
 			const sound = new Audio(notificationSound);
 			sound.play();
-			if(selectedConversation._id === senderId)
+
+			if(!selectedConversation){
+				const { message } = newMessage;
+				toast.custom((t) => (
+					<MessageReceived t={t} message={message} senderName={senderName} profilePic={profilePic}/>
+				));
+			}
+			else if(selectedConversation._id === senderId)
 				setMessages([...messages, newMessage]);
 			else{
 				const { message } = newMessage;
