@@ -23,7 +23,7 @@ const Message = ({message}) => {
                 </div>
             </div>
             
-            <div className={`chat-bubble text-white ${bubbleBgColor} ${shakeClass} pb-2`}>{message.message}</div>
+            <div className={`chat-bubble text-white ${bubbleBgColor} ${shakeClass} pb-2 max-w-80 max-h-80 overflow-y-scroll overflow-x-scroll`} style={{ whiteSpace: 'pre-wrap' }}>{message.message}</div>
 			<div className='chat-footer opacity-50 text-xs flex gap-1 items-center'>{formattedTime}</div>
         </div>
     )
