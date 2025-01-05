@@ -12,7 +12,7 @@ const useListenMessages = () => {
 	const { messages, setMessages, selectedConversation } = useConversation();
 
 	useEffect(() => {
-		socket?.on("newMessage", ({newMessage, senderId, senderName, profilePic}) => {
+		socket?.on("newMessage", ({newMessage, conv}) => {
 			newMessage.shouldShake = true;
 			const sound = new Audio(notificationSound);
 			sound.play();
@@ -20,15 +20,15 @@ const useListenMessages = () => {
 			if(!selectedConversation){
 				const { message } = newMessage;
 				toast.custom((t) => (
-					<MessageReceived t={t} message={message} senderName={senderName} profilePic={profilePic}/>
+					<MessageReceived t={t} message={message} conversation={conv}/>
 				));
 			}
-			else if(selectedConversation._id === senderId)
+			else if(selectedConversation._id === conv._id)
 				setMessages([...messages, newMessage]);
 			else{
 				const { message } = newMessage;
 				toast.custom((t) => (
-					<MessageReceived t={t} message={message} senderName={senderName} profilePic={profilePic}/>
+					<MessageReceived t={t} message={message} conversation={conv}/>
 				));
 			}
 		});

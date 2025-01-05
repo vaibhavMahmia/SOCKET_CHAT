@@ -20,10 +20,10 @@ export const sendMessage = async (req, res) => {
         if(newMessage)
             conversation.messages.push(newMessage._id);
         await Promise.all([conversation.save(), newMessage.save()]);
-        const { fullName: senderName, profilePic } = await User.findById(senderId);
+        const conv = await User.findById(senderId).select('-password');
         const receiverSocketId = getReceiverSocketId(receiverId);
         if(receiverSocketId)
-            io.to(receiverSocketId).emit("newMessage", {newMessage, senderId, senderName, profilePic});
+            io.to(receiverSocketId).emit("newMessage", {newMessage, conv});
         res.status(201).json(newMessage);
     } catch (error) {
         console.log('Error in sendMessage controller: ', error.message);

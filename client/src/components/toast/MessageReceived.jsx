@@ -1,6 +1,8 @@
 import toast from "react-hot-toast"
+import useConversation from "../../zustand/useConversation";
 
-const MessageReceived = ({ senderName, message, t, profilePic }) => {
+const MessageReceived = ({ message, t, conversation }) => {
+  const { setSelectedConversation } = useConversation();
   const displayedMessage = message.length > 8 ? message.slice(0, 8) + "...": message;
   return (
     <div
@@ -8,18 +10,18 @@ const MessageReceived = ({ senderName, message, t, profilePic }) => {
       t.visible ? 'animate-enter' : 'animate-leave'
     } max-w-md w-full bg-slate-600 backdrop-filter backdrop-blur-lg bg-opacity-15 text-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
   >
-    <div className="flex-1 w-0 p-4">
+    <div className="flex-1 w-0 p-4 cursor-pointer" onClick={() => setSelectedConversation(conversation)}>
       <div className="flex items-start">
         <div className="flex-shrink-0 pt-0.5">
           <img
             className="h-10 w-10 rounded-full"
-            src={profilePic}
+            src={conversation.profilePic}
             alt=""
           />
         </div>
         <div className="ml-3 flex-1">
           <p className="text-sm font-medium text-white">
-            {senderName}
+            {conversation.fullName}
           </p>
           <p className="mt-1 text-sm text-white">
             {displayedMessage}
