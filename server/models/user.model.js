@@ -23,6 +23,10 @@ const userSchema = new mongoose.Schema({
     profilePic: {
         type: String,
         default: ''
+    },
+    verified : {
+        type: Boolean,
+        default: false
     }
 }, { timestamps: true });
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import GenderCheckBox from './GenderCheckBox'
 import { Link } from 'react-router-dom'
 import useSignup from '../../hooks/useSignup';
@@ -39,9 +39,9 @@ const Signup = () => {
                 </div>
                 <div>
                     <label className='label p-2'>
-                        <span className='text-base label-text'>UserName</span>
+                        <span className='text-base label-text'>Email</span>
                     </label>
-                    <input type="text" placeholder='Enter UserName' className='w-full input input-bordered h-10' value={inputs.username} onChange={(e) => setInputs({...inputs, username: e.target.value})}/>
+                    <input type="email" placeholder='Enter Email' className='w-full input input-bordered h-10' value={inputs.username} onChange={(e) => setInputs({...inputs, username: e.target.value})}/>
                 </div>
                 <div>
                     <label className='label p-2'>

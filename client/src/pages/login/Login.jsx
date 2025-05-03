@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import useLogin from '../../hooks/useLogin';
 
@@ -21,9 +21,9 @@ const Login = () => {
             <form onSubmit={handleSubmit}>
                 <div>
                     <label className='label p-2'>
-                        <span className='text-base label-text'>UserName</span>
+                        <span className='text-base label-text'>Email</span>
                     </label>
-                    <input type="text" placeholder='Enter UserName' className='w-full input input-bordered h-10'
+                    <input type="email" placeholder='Enter Email' className='w-full input input-bordered h-10'
                         value={username}
                         onChange={(e)=>setUsername(e.target.value)}
                     />

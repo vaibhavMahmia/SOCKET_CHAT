@@ -1,6 +1,6 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useAuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const handleInputErrors = ({ fullName, username, password, confirmPassword, gender }) => {
     if(!fullName || !username || !password || !confirmPassword || !gender){
@@ -20,7 +20,7 @@ const handleInputErrors = ({ fullName, username, password, confirmPassword, gend
 
 const useSignup = () => {
   const [loading, setLoading] = useState(false);
-  const { authUser, setAuthUser } = useAuthContext();
+  const navigate = useNavigate();
   const signup = async ({ fullName, username, password, confirmPassword, gender }) => {
     const success = handleInputErrors({ fullName, username, password, confirmPassword, gender });
     if(!success) return;
@@ -35,10 +35,8 @@ const useSignup = () => {
         const data = await res.json();
         if(data.error)
             throw new Error(data.error);
-        //loclstorage
-        localStorage.setItem('chat-user', JSON.stringify(data));
-        //context
-        setAuthUser(data);
+        
+        navigate('/verify-email');
     } catch (error) {
         toast.error(error.message);
     } finally {
