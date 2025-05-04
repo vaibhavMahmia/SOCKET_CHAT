@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import useLogin from '../../hooks/useLogin';
+import { RiLoginBoxFill } from "react-icons/ri";
+import { FaCircleUser } from "react-icons/fa6";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -12,12 +14,12 @@ const Login = () => {
   }
   return (
     <div className='flex flex-col items-center justify-center min-w-96 mx-auto'>
-        <div className='w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
+        <div className='w-full p-6 rounded-lg shadow-md bg-gray-800 bg-clip-padding backdrop-filter backdrop-blur-lg'>
             <h1 className='text-3xl font-semibold text-center text-gray-300'>
-                Login <span className='text-teal-500'>SocketChatApp</span>
+                Login <span className='text-yellow-500'>FaculKey</span>
             </h1>
             <br />
-            <h3 className='font-semibold text-center text-gray-300 bg-slate-700 rounded-full'>Author: <span className='text-teal-500'>vaibhav</span><span className='text-orange-400'>M</span></h3>
+            <div className='text-8xl font-semibold text-center text-gray-300 items-center justify-center content-center mx-auto flex'><FaCircleUser /></div>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label className='label p-2'>
@@ -42,7 +44,7 @@ const Login = () => {
                 </Link>
                 <div>
                     <button className='btn btn-block btn-sm mt-2' disabled={loading}>
-                        {loading ? <span className='loading loading-spinner'></span>: "LogIn"}
+                        {loading ? <span className='loading loading-spinner'></span>: <><RiLoginBoxFill /> LogIn</>}
                     </button>
                 </div>
             </form>
