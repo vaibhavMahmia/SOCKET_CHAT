@@ -29,7 +29,7 @@ export const signup = async (req, res) => {
             console.log(process.env.NODE_MAILER_PASSWORD)
 
             await transporter.sendMail(mail_options, (error, info) => {
-                if(error) console.log('Error occurred: ' + error.message);
+                if (error) console.log('Error occurred: ' + error.message);
                 console.log('Message sent');
             });
             res.status(201).json({
@@ -49,9 +49,16 @@ export const verify = async (req, res) => {
     try {
         const { token } = req.params;
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        if(!decoded)
-            return res.status(401).json({ error: 'Token Expired !'});
+        if (!decoded)
+            return res.status(401).json({ error: 'Token Expired !' });
         const user = await User.findByIdAndUpdate(decoded.userId, { verified: true }, { new: true, runValidators: true }).select('-password');
+        const emitUser = {
+            _id: user._id,
+            fullName: user.fullName,
+            username: user.username,
+            profilePic: user.profilePic
+        }
+        io.emit("newUser", emitUser);
         generateTokenAndSetCookie(user._id, res);
         res.redirect('/');
     } catch (error) {
@@ -62,13 +69,13 @@ export const verify = async (req, res) => {
 export const login = async (req, res) => {
     try {
         const { username, password } = req.body;
-        if(!username || !password)
+        if (!username || !password)
             return res.status(400).json({ error: 'All fields are required !' });
         const user = await User.findOne({ username });
         const isPasswordCorrect = await bcrypt.compare(password, user?.password || '');
-        if(!user || !isPasswordCorrect)
+        if (!user || !isPasswordCorrect)
             return res.status(400).json({ error: 'Invalid credentials !' });
-        if(!user.verified)
+        if (!user.verified)
             return res.status(400).json({ error: 'Mail is not verified !' });
         generateTokenAndSetCookie(user._id, res);
         res.status(200).json({

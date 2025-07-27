@@ -16,7 +16,7 @@ const Login = () => {
     <div className='flex flex-col items-center justify-center min-w-96 mx-auto'>
         <div className='w-full p-6 rounded-lg shadow-md bg-gray-800 bg-clip-padding backdrop-filter backdrop-blur-lg'>
             <h1 className='text-3xl font-semibold text-center text-gray-300'>
-                Login <span className='text-yellow-500'>FaculKey</span>
+                Login <span className='text-teal-600'>SocketChat</span>
             </h1>
             <br />
             <div className='text-8xl font-semibold text-center text-gray-300 items-center justify-center content-center mx-auto flex'><FaCircleUser /></div>
@@ -39,11 +39,11 @@ const Login = () => {
                         onChange={(e)=>setPassword(e.target.value)} 
                     />
                 </div>
-                <Link to="/signup" className='text-sm hover:underline hover:text-blue-600 mt-2 inline-block'>
+                <Link to="/signup" className='text-sm hover:underline hover:text-teal-600 mt-2 inline-block'>
                     Don't have an account?
                 </Link>
                 <div>
-                    <button className='btn btn-block btn-sm mt-2' disabled={loading}>
+                    <button className='btn btn-block btn-sm mt-2 bg-teal-700 hover:bg-orange-500' disabled={loading}>
                         {loading ? <span className='loading loading-spinner'></span>: <><RiLoginBoxFill /> LogIn</>}
                     </button>
                 </div>

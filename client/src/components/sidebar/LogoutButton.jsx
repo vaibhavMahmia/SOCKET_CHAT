@@ -4,11 +4,17 @@ import useLogout from "../../hooks/useLogout";
 const LogoutButton = () => {
   const { loading, logout } = useLogout();
   return (
-    <div className='mt-auto'>
+    <div className='mt-auto w-full'>
       {
-        !loading ? <RiLogoutBoxLine className="w-6 h-6 text-red-500 cursor-pointer font-bold" onClick={logout}/> : <span className="loading loading-spinner"></span>
+        !loading ? (
+          <div className="flex items-center gap-2 cursor-pointer font-bold" onClick={logout}>
+            <RiLogoutBoxLine className="w-6 h-6 text-red-500" />
+            <span>Logout</span>
+          </div>
+        ) : (
+          <span className="loading loading-spinner"></span>
+        )
       }
-      
     </div>
   )
 }

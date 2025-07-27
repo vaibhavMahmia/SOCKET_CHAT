@@ -27,13 +27,13 @@ const SearchInput = () => {
 		<form onSubmit={handleSubmit} className='flex items-center gap-2'>
 			<input
 				type='text'
-				placeholder='Search…'
-				className='input rounded-full input-bordered py-1 h-6 backdrop-filter backdrop-blur-lg bg-opacity-15'
+				placeholder='search…'
+				className='input rounded input-bordered py-1 h-6 backdrop-filter backdrop-blur-lg bg-opacity-15 w-3/4'
 				value={search}
 				onChange={(e) => setSearch(e.target.value)}
 				style={{fontSize:'12px'}}
 			/>
-			<button type='submit' className='bg-yellow-500 text-white py-1 px-6 rounded-full'>
+			<button type='submit' className='bg-teal-700 text-white py-1 px-6 rounded w-1/4 text-center flex'>
 				<IoSearchSharp className='w-4 outline-none' />
 			</button>
 		</form>

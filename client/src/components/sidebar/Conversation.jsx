@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+
 import useConversation from '../../zustand/useConversation'
 import { useSocketContext } from '../../context/SocketContext';
-import toast from 'react-hot-toast';
 
 const Conversation = ({ conversation, lastIdx, emoji }) => {
     const { selectedConversation, setSelectedConversation } = useConversation();
@@ -12,7 +11,7 @@ const Conversation = ({ conversation, lastIdx, emoji }) => {
     
     return (
         <>
-            <div className={`flex gap-2 items-center hover:bg-yellow-500 rounded p-2 py-1 cursor-pointer ${isSelected ? "bg-blue-500" : ""} ${shakeClass}`} onClick={() => setSelectedConversation(conversation)}>
+            <div className={`flex gap-2 items-center hover:bg-red-500 rounded p-2 py-1 cursor-pointer ${isSelected ? "bg-teal-600" : ""} ${shakeClass}`} onClick={() => setSelectedConversation(conversation)}>
                 <div className={`avatar ${isOnline ? "online" : ""}`}>
                     <div className="w-10 rounded-full">
                         <img src={conversation.profilePic} />

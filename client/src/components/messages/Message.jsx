@@ -8,14 +8,14 @@ const Message = ({message}) => {
     const { selectedConversation } = useConversation();
     const fromMe = message.senderId === authUser._id;
     const formattedTime = extractTime(message.createdAt);
-	const chatClassName = fromMe ? "chat-end" : "chat-start";
-	const profilePic = fromMe ? authUser.profilePic : selectedConversation?.profilePic;
-	const bubbleBgColor = fromMe ? "bg-blue-500" : "";
+    const chatClassName = fromMe ? "chat-end" : "chat-start";
+    const profilePic = fromMe ? authUser.profilePic : selectedConversation?.profilePic;
+    const bubbleBgColor = fromMe ? "bg-red-500" : "bg-teal-700";
     const shakeClass = message.shouldShake ? "shake" : "";
     return (
         <div className={`chat ${chatClassName}`}>
             <div className="chat-image avatar">
-                <div className="w-10 rounded-full">
+                <div className="w-5 rounded-full">
                     <img
                         alt="Tailwind CSS chat bubble component"
                         src={profilePic} 
@@ -23,8 +23,8 @@ const Message = ({message}) => {
                 </div>
             </div>
             
-            <div className={`chat-bubble text-white ${bubbleBgColor} ${shakeClass} pb-2 max-w-80 max-h-80 overflow-y-scroll overflow-x-scroll backdrop-filter backdrop-blur-lg`} style={{ whiteSpace: 'pre-wrap' }}>{message.message}</div>
-			<div className='chat-footer opacity-50 text-xs flex gap-1 items-center'>{formattedTime}</div>
+            <div className={`rounded-xl text-white ${bubbleBgColor} ${shakeClass} max-w-200 max-h-80 overflow-y-auto overflow-x-hidden backdrop-filter backdrop-blur-lg py-1 px-3`} style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word', overflowX: 'hidden' }}>{message.message}</div>
+            <div className='chat-footer opacity-50 text-xs flex gap-1 items-center'>{formattedTime}</div>
         </div>
     )
 }

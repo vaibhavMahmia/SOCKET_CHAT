@@ -11,7 +11,7 @@ const Conversations = () => {
   useListenMessages();
   console.log("conversations: ", conversations);
   return (
-    <div className='py-2 flex flex-col overflow-auto'>
+    <div className='py-2 flex flex-col overflow-auto w-full'>
       {
         conversations.map((conversation, idx) => <Conversation key={conversation._id} conversation={conversation} emoji={getRandomEmoji()} lastIdx={ idx === conversations.length - 1}/>)
       }
